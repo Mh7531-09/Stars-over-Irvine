@@ -10,31 +10,21 @@
   <link
     rel="stylesheet"
     href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-sA+zA7KfRjHqzBY4wWxFCOAvf2b5H1HUAXt3mZLi9v0="
-    crossorigin=""
   />
   
   <style>
-    :root {
-      --bg: #0d1b2a;
-      --bg-card: #16213e;
-      --primary: #e94560;
-      --text: #f0f0f5;
-      --text-muted: #a0a0b5;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
+    body, html {
+      margin: 0; padding: 0; height: 100%;
       font-family: 'Poppins', Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
+      background: #0d1b2a;
+      color: #f0f0f5;
       display: flex;
       height: 100vh;
       overflow: hidden;
     }
     .sidebar {
       width: 220px;
-      background: var(--bg-card);
+      background: #16213e;
       display: flex;
       flex-direction: column;
       padding: 1.5rem 1rem;
@@ -43,7 +33,7 @@
     .sidebar button {
       background: none;
       border: none;
-      color: var(--text);
+      color: #f0f0f5;
       font-size: 1.1rem;
       font-weight: 600;
       padding: 12px 8px;
@@ -55,16 +45,17 @@
     }
     .sidebar button:hover,
     .sidebar button.active {
-      background-color: var(--primary);
+      background-color: #e94560;
       color: white;
     }
     .content {
       flex: 1;
       overflow-y: auto;
       padding: 2rem 3rem;
-      background: var(--bg);
+      background: #0d1b2a;
+      position: relative;
     }
-    .container {
+    #home-section {
       max-width: 900px;
       margin: 0 auto;
     }
@@ -76,11 +67,11 @@
     }
     .subtitle {
       text-align: center;
-      color: var(--text-muted);
+      color: #a0a0b5;
       margin-bottom: 2rem;
     }
     h2 {
-      color: var(--primary);
+      color: #e94560;
       font-size: 1.6rem;
       margin: 2rem 0 0.75rem;
     }
@@ -95,14 +86,14 @@
       width: 100%;
       background: #20334d;
       border: none;
-      color: var(--text);
+      color: #f0f0f5;
       border-radius: 8px;
       padding: 0.75rem 1rem;
       margin-bottom: 1rem;
       font-size: 1rem;
     }
     form button {
-      background: var(--primary);
+      background: #e94560;
       border: none;
       color: #fff;
       padding: 0.75rem 1.5rem;
@@ -116,11 +107,21 @@
     }
     footer {
       text-align: center;
-      color: var(--text-muted);
+      color: #a0a0b5;
       margin-top: 2.5rem;
       font-size: 0.9rem;
+      position: absolute;
+      bottom: 0;
+      width: calc(100% - 220px);
+      left: 220px;
+      padding: 1rem 0;
+      background: #0d1b2a;
     }
-    /* Leaflet map styling */
+    /* Map styles */
+    #map-section {
+      height: 100%;
+      display: none;
+    }
     #map {
       height: 100%;
       width: 100%;
@@ -136,7 +137,7 @@
   </nav>
   
   <main class="content">
-    <section id="home-section" class="container">
+    <section id="home-section">
       <h1>Stars Over Irvine</h1>
       <p class="subtitle">Lighting up the sky</p>
 
@@ -160,7 +161,7 @@
       </form>
     </section>
     
-    <section id="map-section" style="display:none; height: 100vh;">
+    <section id="map-section">
       <div id="map"></div>
     </section>
   </main>
@@ -168,14 +169,8 @@
   <footer>© 2025 Stars Over Irvine · Built with 💡 for darker nights</footer>
 
   <!-- Leaflet JS -->
-  <script
-    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-o9N1j7oG4xqoY9B7Fnq+6FxyFC1kJ9A2zY+R7m+IKLc="
-    crossorigin=""
-  ></script>
-  
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
-    // Sidebar buttons
     const btnHome = document.getElementById('btn-home');
     const btnMap = document.getElementById('btn-map');
     const homeSection = document.getElementById('home-section');
@@ -193,18 +188,18 @@
       btnHome.classList.remove('active');
       homeSection.style.display = 'none';
       mapSection.style.display = 'block';
-      map.invalidateSize(); // Fix map sizing issues when showing it
+      map.invalidateSize(); // Fix map sizing after showing container
     });
 
     // Initialize Leaflet map
-    const map = L.map('map').setView([33.6846, -117.8265], 12); // Coordinates of Irvine, CA
-
+    const map = L.map('map').setView([33.6846, -117.8265], 12);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
 
-    // Example marker (you can add more or use dynamic data)
-    L.marker([33.6846, -117.8265]).addTo(map)
+    // Add marker for Irvine
+    L.marker([33.6846, -117.8265])
+      .addTo(map)
       .bindPopup('Welcome to Stars Over Irvine!')
       .openPopup();
   </script>
