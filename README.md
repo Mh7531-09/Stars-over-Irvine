@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ClearSkiesIrvine</title>
+  <title>Welcome to the Stars over Irvine website!</title>
   <style>
     body {
       font-family: Arial, sans-serif;
