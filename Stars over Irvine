@@ -134,3 +134,164 @@
   </header>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>StarsOverIrvine</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0d1b2a;
+      --bg-card: #16213e;
+      --primary: #e94560;
+      --text: #f0f0f5;
+      --text-muted: #a0a0b5;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      text-align: center;
+      padding: 3rem 1rem 2rem;
+    }
+    header h1 {
+      font-size: 2.75rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+    header p {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+    }
+
+    main {
+      flex: 1;
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 1rem 3rem;
+      display: grid;
+      gap: 2rem;
+    }
+
+    .card {
+      background: var(--bg-card);
+      padding: 1.8rem 2rem;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+    }
+    .card h2 {
+      color: var(--primary);
+      margin-bottom: 0.75rem;
+      font-size: 1.5rem;
+    }
+
+    .card ul {
+      list-style-type: disc;
+      padding-left: 1.25rem;
+    }
+    .card ul li {
+      margin-bottom: 0.6rem;
+    }
+
+    form input, form textarea {
+      width: 100%;
+      background: #20334d;
+      border: none;
+      color: var(--text);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+    form button {
+      background: var(--primary);
+      border: none;
+      color: #ffffff;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    form button:hover {
+      background: #d8344f;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem 1rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    @media (min-width: 600px) {
+      header h1 { font-size: 3.25rem; }
+      .card h2 { font-size: 1.75rem; }
+    }
+  </style>
+  <!-- Google Analytics placeholder -->
+  <!--
+  <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_TRACKING_ID"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);} gtag('js', new Date());
+    gtag('config', 'YOUR_TRACKING_ID');
+  </script>
+  -->
+</head>
+<body>
+  <header>
+    <h1>Stars Over Irvine</h1>
+    <p>Protecting Orange County's night sky from light pollution</p>
+  </header>
+
+  <main>
+    <section class="card" id="about">
+      <h2>Why Dark Skies Matter</h2>
+      <p>Light pollution obscures the stars, wastes energy, and disrupts wildlife and human health. Together we can bring back the Milky Way to Irvine!</p>
+    </section>
+
+    <section class="card" id="tips">
+      <h2>Simple Steps You Can Take</h2>
+      <ul>
+        <li>Install fully shielded, downward-facing fixtures outdoors.</li>
+        <li>Use warm-white LEDs (&lt;3000 K) and only the brightness you need.</li>
+        <li>Put exterior lights on motion sensors or timers.</li>
+        <li>Close curtains at night to prevent indoor light spill.</li>
+        <li>Advocate for dark-sky ordinances in your HOA or city council.</li>
+      </ul>
+    </section>
+
+    <section class="card" id="involved">
+      <h2>Get Involved</h2>
+      <p>Join our newsletter for local events, night-sky walks, and volunteer projects.</p>
+      <form name="newsletter" method="post" netlify>
+        <input type="email" name="email" placeholder="Email address" required />
+        <button type="submit">Subscribe</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 Stars Over Irvine · Built with 💡 for darker nights
+  </footer>
+</body>
+</html>
