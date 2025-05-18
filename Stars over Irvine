@@ -5,203 +5,79 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Stars Over Irvine</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
-  
-  <!-- Leaflet CSS -->
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-  />
-  
   <style>
-    body, html {
-      margin: 0; padding: 0; height: 100%;
-      font-family: 'Poppins', Arial, sans-serif;
-      background: #0d1b2a;
-      color: #f0f0f5;
-      display: flex;
-      height: 100vh;
-      overflow: hidden;
+    :root {
+      --bg: #0d1b2a;
+      --bg-card: #16213e;
+      --primary: #e94560;
+      --text: #f0f0f5;
+      --text-muted: #a0a0b5;
     }
-    .sidebar {
-      width: 220px;
-      background: #16213e;
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Poppins', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
-      padding: 1.5rem 1rem;
-      box-shadow: 2px 0 8px rgba(0,0,0,0.3);
+      align-items: center;
+      padding: 2rem 1rem 3rem;
+      line-height: 1.6;
     }
-    .sidebar button {
-      background: none;
-      border: none;
-      color: #f0f0f5;
-      font-size: 1.1rem;
-      font-weight: 600;
-      padding: 12px 8px;
-      margin-bottom: 1rem;
-      cursor: pointer;
-      border-radius: 6px;
-      transition: background-color 0.3s;
-      text-align: left;
-    }
-    .sidebar button:hover,
-    .sidebar button.active {
-      background-color: #e94560;
-      color: white;
-    }
-    .content {
-      flex: 1;
-      overflow-y: auto;
-      padding: 2rem 3rem;
-      background: #0d1b2a;
-      position: relative;
-    }
-    #home-section {
+    .container {
+      width: 100%;
       max-width: 900px;
-      margin: 0 auto;
+      background: var(--bg-card);
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0,0,0,.25);
+      padding: 2.5rem 2rem 3rem;
     }
     h1 {
       font-size: 2.75rem;
       font-weight: 600;
-      margin-bottom: 0.5rem;
       text-align: center;
+      margin-bottom: .5rem;
     }
-    .subtitle {
-      text-align: center;
-      color: #a0a0b5;
-      margin-bottom: 2rem;
-    }
-    h2 {
-      color: #e94560;
-      font-size: 1.6rem;
-      margin: 2rem 0 0.75rem;
-    }
-    ul {
-      list-style: disc;
-      padding-left: 1.25rem;
-    }
-    ul li {
-      margin-bottom: 0.6rem;
-    }
+    .subtitle { text-align: center; color: var(--text-muted); margin-bottom: 2rem; }
+    h2 { color: var(--primary); font-size: 1.6rem; margin: 2rem 0 .75rem; }
+    ul { list-style: disc; padding-left: 1.25rem; }
+    ul li { margin-bottom: .6rem; }
     form input {
-      width: 100%;
-      background: #20334d;
-      border: none;
-      color: #f0f0f5;
-      border-radius: 8px;
-      padding: 0.75rem 1rem;
-      margin-bottom: 1rem;
-      font-size: 1rem;
+      width: 100%; background:#20334d; border:none; color:var(--text); border-radius:8px; padding:.75rem 1rem; margin-bottom:1rem; font-size:1rem;
     }
     form button {
-      background: #e94560;
-      border: none;
-      color: #fff;
-      padding: 0.75rem 1.5rem;
-      font-size: 1rem;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background 0.3s;
+      background: var(--primary); border:none; color:#fff; padding:.75rem 1.5rem; font-size:1rem; border-radius:8px; cursor:pointer; transition:background .3s;
     }
-    form button:hover {
-      background: #d8344f;
-    }
-    footer {
-      text-align: center;
-      color: #a0a0b5;
-      margin-top: 2.5rem;
-      font-size: 0.9rem;
-      position: absolute;
-      bottom: 0;
-      width: calc(100% - 220px);
-      left: 220px;
-      padding: 1rem 0;
-      background: #0d1b2a;
-    }
-    /* Map styles */
-    #map-section {
-      height: 100%;
-      display: none;
-    }
-    #map {
-      height: 100%;
-      width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.25);
-    }
+    form button:hover { background:#d8344f; }
+    footer { text-align:center; color:var(--text-muted); margin-top:2.5rem; font-size:.9rem; }
+    @media(min-width:600px){ h1{font-size:3.25rem;} h2{font-size:1.8rem;} }
   </style>
 </head>
 <body>
-  <nav class="sidebar">
-    <button id="btn-home" class="active">Home</button>
-    <button id="btn-map">Map</button>
-  </nav>
-  
-  <main class="content">
-    <section id="home-section">
-      <h1>Stars Over Irvine</h1>
-      <p class="subtitle">Lighting up the sky</p>
+  <div class="container">
+    <h1>Stars Over Irvine</h1>
+    <p class="subtitle">Lighting up the sky</p>
 
-      <h2>Why Dark Skies Matter</h2>
-      <p>Light pollution obscures the stars, wastes energy, and disrupts wildlife and human health. Together we can bring back the Milky Way to Irvine!</p>
+    <h2>Why Dark Skies Matter</h2>
+    <p>Light pollution obscures the stars, wastes energy, and disrupts wildlife and human health. Together we can bring back the Milky Way to Irvine!</p>
 
-      <h2>Simple Steps You Can Take</h2>
-      <ul>
-        <li>Install fully shielded, downward-facing fixtures outdoors.</li>
-        <li>Use warm-white LEDs (&lt;3000 K) at the lowest brightness you need.</li>
-        <li>Put exterior lights on motion sensors or timers.</li>
-        <li>Close curtains at night to prevent indoor light spill.</li>
-        <li>Advocate for dark-sky ordinances in your HOA or city council.</li>
-      </ul>
+    <h2>Simple Steps You Can Take</h2>
+    <ul>
+      <li>Install fully shielded, downward‑facing fixtures outdoors.</li>
+      <li>Use warm‑white LEDs (&lt;3000 K) at the lowest brightness you need.</li>
+      <li>Put exterior lights on motion sensors or timers.</li>
+      <li>Close curtains at night to prevent indoor light spill.</li>
+      <li>Advocate for dark‑sky ordinances in your HOA or city council.</li>
+    </ul>
 
-      <h2>Get Involved</h2>
-      <p>Join our newsletter for local events, night-sky walks, and volunteer projects.</p>
-      <form name="newsletter" method="post" netlify>
-        <input type="email" name="email" placeholder="Email address" required />
-        <button type="submit">Subscribe</button>
-      </form>
-    </section>
-    
-    <section id="map-section">
-      <div id="map"></div>
-    </section>
-  </main>
-
+    <h2>Get Involved</h2>
+    <p>Join our newsletter for local events, night‑sky walks, and volunteer projects.</p>
+    <form name="newsletter" method="post" netlify>
+      <input type="email" name="email" placeholder="Email address" required>
+      <button type="submit">Subscribe</button>
+    </form>
+  </div>
   <footer>© 2025 Stars Over Irvine · Built with 💡 for darker nights</footer>
-
-  <!-- Leaflet JS -->
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script>
-    const btnHome = document.getElementById('btn-home');
-    const btnMap = document.getElementById('btn-map');
-    const homeSection = document.getElementById('home-section');
-    const mapSection = document.getElementById('map-section');
-
-    btnHome.addEventListener('click', () => {
-      btnHome.classList.add('active');
-      btnMap.classList.remove('active');
-      homeSection.style.display = 'block';
-      mapSection.style.display = 'none';
-    });
-
-    btnMap.addEventListener('click', () => {
-      btnMap.classList.add('active');
-      btnHome.classList.remove('active');
-      homeSection.style.display = 'none';
-      mapSection.style.display = 'block';
-      map.invalidateSize(); // Fix map sizing after showing container
-    });
-
-    // Initialize Leaflet map
-    const map = L.map('map').setView([33.6846, -117.8265], 12);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; OpenStreetMap contributors'
-    }).addTo(map);
-
-    // Add marker for Irvine
-    L.marker([33.6846, -117.8265])
-      .addTo(map)
-      .bindPopup('Welcome to Stars Over Irvine!')
-      .openPopup();
-  </script>
 </body>
 </html>
